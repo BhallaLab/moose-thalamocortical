@@ -1,0 +1,66 @@
+Compiling with flags:
+	BUILD: release
+	USE_GSL: 1
+	USE_SBML: 0
+	USE_NEUROML: 0
+	USE_READLINE: 1
+	USE_MPI: 0
+	USE_MUSIC: 0
+	USE_CURSES: 0
+	USE_GL: 0
+make[1]: Entering directory `/home/subha/moose/basecode'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/basecode'
+make[1]: Entering directory `/home/subha/moose/connections'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/connections'
+make[1]: Entering directory `/home/subha/moose/maindir'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/maindir'
+make[1]: Entering directory `/home/subha/moose/genesis_parser'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/genesis_parser'
+make[1]: Entering directory `/home/subha/moose/shell'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/shell'
+make[1]: Entering directory `/home/subha/moose/element'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/element'
+make[1]: Entering directory `/home/subha/moose/scheduling'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/scheduling'
+make[1]: Entering directory `/home/subha/moose/biophysics'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/biophysics'
+make[1]: Entering directory `/home/subha/moose/hsolve'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/hsolve'
+make[1]: Entering directory `/home/subha/moose/kinetics'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/kinetics'
+make[1]: Entering directory `/home/subha/moose/ksolve'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/ksolve'
+make[1]: Entering directory `/home/subha/moose/builtins'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/builtins'
+make[1]: Entering directory `/home/subha/moose/utility'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/utility'
+make[1]: Entering directory `/home/subha/moose/randnum'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/randnum'
+make[1]: Entering directory `/home/subha/moose/signeur'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/signeur'
+make[1]: Entering directory `/home/subha/moose/device'
+make[1]: Nothing to be done for `default'.
+make[1]: Leaving directory `/home/subha/moose/device'
+make[1]: Entering directory `/home/subha/moose/pymoose'
+g++ -O3 -Wall -Wno-long-long -pedantic -DNDEBUG -DUSE_GENESIS_PARSER  -DUSE_GSL  -DUSE_READLINE  -DPYMOOSE -fPIC  -I/usr/local/include -I.. -I../basecode -I../connections -I../maindir -I../genesis_parser  -I../shell -I../element -I../scheduling -I../biophysics -I../hsolve -I../kinetics -I../ksolve -I../builtins -I../utility -I../randnum -I../signeur -I../device -I/usr/local/include/python2.6 -shared -o _moose.so moose_wrap.o PyMooseBase.o PyMooseContext.o Class.o Cell.o Compartment.o Neutral.o PyMooseUtil.o HHChannel.o HHGate.o Mg_block.o Interpol.o CaConc.o SpikeGen.o PulseGen.o RandomSpike.o SynChan.o NMDAChan.o BinSynchan.o StochSynchan.o Table.o Nernst.o Tick.o ClockJob.o Enzyme.o KineticHub.o Kintegrator.o KineticManager.o Molecule.o Reaction.o Stoich.o NeuroScan.o HSolve.o RandGenerator.o BinomialRng.o ExponentialRng.o GammaRng.o NormalRng.o PoissonRng.o UniformRng.o KinCompt.o Panel.o DiskPanel.o HemispherePanel.o RectPanel.o CylPanel.o SpherePanel.o TriPanel.o Surface.o Geometry.o MathFunc.o AscFile.o DifShell.o GssaStoich.o TauPump.o GLcell.o GLview.o TimeTable.o PIDController.o RC.o DiffAmp.o GHK.o IntFire.o IzhikevichNrn.o HHChannel2D.o HHGate2D.o SteadyState.o InterSolverFlux.o Adaptor.o SigNeur.o Leakage.o ../basecode/basecode.o ../element/element.o ../shell/shell.o ../builtins/builtins.o ../biophysics/biophysics.o ../scheduling/scheduling.o ../maindir/init.o ../maindir/initCinfos.o ../connections/connections.o ../utility/utility.o ../randnum/randnum.o ../genesis_parser/SLI.o ../kinetics/kinetics.o ../hsolve/hsolve.o ../ksolve/ksolve.o ../device/device.o ../signeur/signeur.o -lm  -lgsl -lgslcblas -lreadline -lncurses -L/usr/local/lib -lpython2.6
+/usr/bin/ld: /usr/local/lib/libpython2.6.a(abstract.o): relocation R_X86_64_32 against `a local symbol' can not be used when making a shared object; recompile with -fPIC
+/usr/local/lib/libpython2.6.a: could not read symbols: Bad value
+collect2: ld returned 1 exit status
+make[1]: *** [_moose.so] Error 1
+make[1]: Leaving directory `/home/subha/moose/pymoose'
+make: *** [libs] Error 2

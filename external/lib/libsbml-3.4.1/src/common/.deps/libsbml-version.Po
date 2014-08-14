@@ -1,0 +1,9 @@
+libsbml-version.lo: libsbml-version.cpp libsbml-version.h \
+ /data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/extern.h \
+ /data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/libsbml-namespace.h
+
+libsbml-version.h:
+
+/data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/extern.h:
+
+/data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/libsbml-namespace.h:

@@ -1,0 +1,37 @@
+CompressCommon.lo: CompressCommon.cpp \
+ /data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/compress/CompressCommon.h \
+ /usr/include/c++/4.4/exception \
+ /usr/include/c++/4.4/x86_64-linux-gnu/bits/c++config.h \
+ /usr/include/c++/4.4/x86_64-linux-gnu/bits/os_defines.h \
+ /usr/include/features.h /usr/include/bits/predefs.h \
+ /usr/include/sys/cdefs.h /usr/include/bits/wordsize.h \
+ /usr/include/gnu/stubs.h /usr/include/gnu/stubs-64.h \
+ /usr/include/c++/4.4/x86_64-linux-gnu/bits/cpu_defines.h \
+ /data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/extern.h \
+ /data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/libsbml-namespace.h
+
+/data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/compress/CompressCommon.h:
+
+/usr/include/c++/4.4/exception:
+
+/usr/include/c++/4.4/x86_64-linux-gnu/bits/c++config.h:
+
+/usr/include/c++/4.4/x86_64-linux-gnu/bits/os_defines.h:
+
+/usr/include/features.h:
+
+/usr/include/bits/predefs.h:
+
+/usr/include/sys/cdefs.h:
+
+/usr/include/bits/wordsize.h:
+
+/usr/include/gnu/stubs.h:
+
+/usr/include/gnu/stubs-64.h:
+
+/usr/include/c++/4.4/x86_64-linux-gnu/bits/cpu_defines.h:
+
+/data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/extern.h:
+
+/data/subha/moose/external/lib/libsbml-3.4.1/include/sbml/common/libsbml-namespace.h:
