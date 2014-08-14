@@ -123,6 +123,8 @@ void Calculator::subValue( const Conn* c, double term )
 void Calculator::cntInput( const Conn * c, double term)
 {
   static_cast< Calculator* >( c->data() )->val_ += ( term != 0 );
+}
+
 void Calculator::processFunc( const Conn* c, ProcInfo p )
 {
         static_cast< Calculator* >( c->data() )->innerProcessFunc( c->target(), p );
