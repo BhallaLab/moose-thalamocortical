@@ -115,8 +115,8 @@ class PulseGen
     int trigMode_;
     bool secondPulse_;
     
-    double prevInput_;
-    double input_;    
+    int prevInput_;
+    int input_;    
 };
 
     

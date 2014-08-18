@@ -445,6 +445,7 @@ void PulseGen::inputFunc(const Conn* c, double value)
     PulseGen* obj = static_cast<PulseGen*> (c->data());
     ASSERT( obj != NULL, "PulseGen::inputFunc(const Conn*, int) - target data pointer is NULL.");
     obj->input_ = value;
+    //cerr << "&&&&& " << c->target().name() << ", value=" << value << ", set input_=" << obj->input_ << endl;
 }
 
 void PulseGen::setLevelFunc(const Conn* c, int index, double level)

@@ -352,6 +352,9 @@ double Interpol::interpolateWithoutCheck( double x ) const
 
 double Interpol::innerLookup( double x ) const
 {
+	if (table_.size() == 2){
+		cerr << "Interpol::innerLookup: x=" << x << ", xmin=" << xmin_ << ", xmax=" << xmax_ << ", front=" << table_.front() << ", back=" << table_.back() << endl;
+	}
 	if ( table_.size() == 0 )
 		return 0.0;
 	if ( x <= xmin_ ) 

@@ -135,7 +135,7 @@ void Calculator::innerProcessFunc( Eref e, ProcInfo info )
   
   // Send the value out
   send1< double >( e, valueSlot, val_ );
-
+  //cerr << "%%%%% t=" << info->currTime_ << ", sending out value=" << val_ << ", initVal=" << initVal_ << endl;
   prevVal_ = val_;
 
   // Reset the value 
