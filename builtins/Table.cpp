@@ -184,8 +184,9 @@ Table::Table()
 void Table::setInput( const Conn* c, double input ) 
 {
 	static_cast< Table* >( c->data() )->input_ = input;
-//	if (c->target().name() == "sync_detector"){
-//		cerr << "#### input received=" << input << ", input set=" << static_cast< Table* >( c->data() )->input_  << endl;
+//	Table * tab = static_cast< Table* >( c->data() );
+//	if (c->target().name() == "event_to_bool"){
+//		cerr << "#### " << c->target().name() << ": input received=" << input << ", input set=" << tab->input_  << endl;
 //	}	
 }
 double Table::getInput( Eref e )
@@ -283,7 +284,7 @@ void Table::innerProcess( Eref e, ProcInfo p )
 		case TAB_IO :
 			output_ = innerLookup( input_ ) * py_ + sy_ ;
 			send1< double >( e, outputSlot, output_ );
-//			if (e.name() == "sync_detector"){
+//			if (e.name() == "event_to_bool"){
 //				cerr << "$$$$$ t=" << p->currTime_ << ", input=" << input_ << ", output=" << output_ << endl;
 //				cerr << "      innerLookup=" << innerLookup(input_) << ", xmin=" << xmin_ << ", xmax=" << xmax_ 
 //				     << ", tabsize="  << table_.size() << "tab[0]=" << table_.front() << ", tab[-1]=" << table_.back() << endl;

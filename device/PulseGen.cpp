@@ -445,7 +445,7 @@ void PulseGen::inputFunc(const Conn* c, double value)
     PulseGen* obj = static_cast<PulseGen*> (c->data());
     ASSERT( obj != NULL, "PulseGen::inputFunc(const Conn*, int) - target data pointer is NULL.");
     obj->input_ = value;
-    //cerr << "&&&&& " << c->target().name() << ", value=" << value << ", set input_=" << obj->input_ << endl;
+    //cerr << "**** " << c->target().name() << ".inputFunc: value=" << value << ", set input_=" << obj->input_ << endl;
 }
 
 void PulseGen::setLevelFunc(const Conn* c, int index, double level)
@@ -489,7 +489,7 @@ void PulseGen::innerProcessFunc(const Conn* c, ProcInfo p)
         if  (incr > 0){
             period += incr;
         }
-    }
+    }    
     switch (trigMode_){
         case PulseGen::FREE_RUN:
             phase = fmod(currentTime, period);
@@ -507,6 +507,7 @@ void PulseGen::innerProcessFunc(const Conn* c, ProcInfo p)
                 }
                 phase = currentTime - trigTime_;
             }
+	    //cerr << "****" << c->target().name() << " input=" << input_ << ", prevInput=" << prevInput_ << ", phase=" << phase << ", trigTime=" << trigTime_ <<  ", period=" << period << ", t=" << currentTime << endl;
             prevInput_ = input_;            
             break;
         case PulseGen::EXT_GATE:
@@ -543,6 +544,7 @@ void PulseGen::innerProcessFunc(const Conn* c, ProcInfo p)
         }
         phase -= delay_[ii];
     }
+//    cerr << "****" << c->target().name() << " output=" << output_ << endl;
     send1<double>( c->target(), outputSlot, output_);    
 }
     

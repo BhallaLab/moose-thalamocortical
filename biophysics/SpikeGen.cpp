@@ -77,6 +77,8 @@ const Cinfo* initSpikeGenCinfo()
 	///////////////////////////////////////////////////////
 		new SrcFinfo( "event", Ftype1< double >::global(), 
 			"Sends out a trigger for an event. The time is not sent - everyone knows the time." ),
+		new SrcFinfo( "stateSrc", Ftype1< double >::global(),
+			"Sends out the current state. This equals 'amplitude' on firing."),
 
 	//////////////////////////////////////////////////////////////////
 	// Dest Finfos.
@@ -112,6 +114,7 @@ static const Cinfo* spikeGenCinfo = initSpikeGenCinfo();
 
 static const Slot eventSlot =
 	initSpikeGenCinfo()->getSlot( "event" );
+static const Slot stateSlot = initSpikeGenCinfo()->getSlot("stateSrc");
 
 //////////////////////////////////////////////////////////////////
 // Here we put the SpikeGen class functions.
@@ -170,6 +173,9 @@ int SpikeGen::getEdgeTriggered( Eref e )
 void SpikeGen::innerProcessFunc( const Conn* c, ProcInfo p )
 {
 	double t = p->currTime_;
+//	if (c->target().name() == "sync_detector"){
+//		cerr << "**** sync_detector: t=" << t << ", threshold=" << threshold_ << ", V = " << V_ << endl;
+//	}	
 	if ( V_ > threshold_ ) {
             if ((t + p->dt_/2.0) >= (lastEvent_ + refractT_)){
                 if (!edgeTriggered_ || (edgeTriggered_ && !fired_)) {
@@ -177,6 +183,10 @@ void SpikeGen::innerProcessFunc( const Conn* c, ProcInfo p )
                     lastEvent_ = t;
                     state_ = amplitude_;
                     fired_ = true;                    
+//		     	if (c->target().name() == "sync_detector"){
+//				cerr << "**** sync_detector: state=" << state_ << ", fired" << endl;
+//			}	
+			
                 } else {
                     state_ = 0.0;                
                 }
@@ -185,6 +195,7 @@ void SpikeGen::innerProcessFunc( const Conn* c, ProcInfo p )
             state_ = 0.0;
             fired_ = false;
 	}
+	send1< double >( c->target(), stateSlot, state_ );
 }
 void SpikeGen::processFunc( const Conn* c, ProcInfo p )
 {
