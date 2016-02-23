@@ -1,2 +1,9 @@
 *.o
+.svn
+*.pyc
+*.so
+*.plot
+*.dat
+
+
 
