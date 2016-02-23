@@ -28,14 +28,6 @@ g++
 
 make
 
-flex
-
-bison
-
-swig
-
-readline library
-
 GNU Scientific Library (GSL) with cblas support (libgslcblas-dev)
 
 Python 2.7 development libraries 
