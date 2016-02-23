@@ -217,5 +217,12 @@ $(TARGET): moose.py moose_wrap.o $(OBJ) $(HEADERS)
 moose_wrap.o: moose_wrap.cxx
 	$(CXX) $(CXXFLAGS) -c $^ -o $@
 
+moose.py moose_wrap.cxx: moose.i $(HEADERS) $(OBJ)
+	swig -modern -c++ -python -threads $(SWIGOPTS) moose.i
+
+# This is not required - gnumake does it by implicit rule
+# .cpp.o:
+# 	$(CXX) $(CXXFLAGS) $< -c
+
 clean:
-	-rm -f *.o  *.so *.pyc
+	-rm -f *.o moose_wrap.cxx *.so moose.py test_swig *.pyc
