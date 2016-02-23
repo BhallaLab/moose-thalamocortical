@@ -85,11 +85,11 @@
 
 # BUILD (= debug, release)
 BUILD?=release
-PROFILE?=1
+PROFILE?=0
 USE_GSL?=1
 USE_SBML?=0
 USE_NEUROML?=0
-USE_READLINE?=1
+# USE_READLINE?=1
 USE_MPI?=0
 USE_MUSIC?=0
 USE_CURSES?=0
@@ -135,13 +135,6 @@ endif
 ifeq ($(BUILD),release)
 CXXFLAGS  = -O3 -Wall -Wno-long-long -pedantic -DNDEBUG -DUSE_GENESIS_PARSER 
 endif
-# Insert the svn revision no. into the code as a preprocessor macro
-ifneq ($(SVN),0)
-SVN_REVISION=$(shell svnversion)
-ifneq ($(SVN_REVISION),export)
-CXXFLAGS+=-DSVN_REVISION=\"$(SVN_REVISION)\"
-endif
-endif
 
 ##########################################################################
 #
@@ -154,11 +147,6 @@ endif
 #
 #CXXFLAGS  =	-g -Wall -pedantic -DDO_UNIT_TESTS -ffriend-injection -DUSE_GENESIS_PARSER
 
-##########################################################################
-#
-# Don't mess with stuff below!
-#
-##########################################################################
 
 
 # Libraries are defined below. For now we do not use threads.
@@ -166,8 +154,6 @@ SUBLIBS =
 #LIBS =	-lm -lpthread
 LIBS = 	-lm 
 ##########################################################################
-#
-# Developer options (Don't try these unless you are writing new code!)
 #
 # For generating python interface:
 # Do remember that you have to create a directory named "generated" 
@@ -213,37 +199,37 @@ endif
 
 # To use GSL, pass USE_GSL=1 in make command line
 ifeq ($(USE_GSL),1)
-LIBS+= -lgsl -lgslcblas -L/cluster/share/software/gsl116/lib/ -L.
-CXXFLAGS+= -DUSE_GSL   -I/cluster/share/software/gsl116/include/
+LIBS+= -lgsl -lgslcblas -L.
+CXXFLAGS+= -DUSE_GSL   
 
 endif
 
 # To use SBML, pass USE_SBML=1 in make command line
-ifeq ($(USE_SBML),1)
-LIBS+= -lsbml
-CXXFLAGS+=-DUSE_SBML 
-LDFLAGS += -L/usr/lib
-SBML_DIR = sbml_IO
-SBML_LIB = sbml_IO/sbml_IO.o 
-endif
+# ifeq ($(USE_SBML),1)
+# LIBS+= -lsbml
+# CXXFLAGS+=-DUSE_SBML 
+# LDFLAGS += -L/usr/lib
+# SBML_DIR = sbml_IO
+# SBML_LIB = sbml_IO/sbml_IO.o 
+# endif
 
 # To use NeuroML, pass USE_NeuroML=1 in make command line
-ifeq ($(USE_NEUROML),1)
-LIBS+= -lxml2 -lneuroml
-LDFLAGS+= -Lexternal/neuroML_src
-CXXFLAGS+=-DUSE_NEUROML
-NEUROML_DIR = neuroML_IO
-NEUROML_LIB = neuroML_IO/neuroML_IO.o
-LIBNEUROML_SRC = external/neuroML_src
-LIBNEUROML_DYNAMIC = external/neuroML_src/libneuroml.so
-LIBNEUROML_STATIC = external/neuroML_src/libneuroml.a
-endif
+# ifeq ($(USE_NEUROML),1)
+# LIBS+= -lxml2 -lneuroml
+# LDFLAGS+= -Lexternal/neuroML_src
+# CXXFLAGS+=-DUSE_NEUROML
+# NEUROML_DIR = neuroML_IO
+# NEUROML_LIB = neuroML_IO/neuroML_IO.o
+# LIBNEUROML_SRC = external/neuroML_src
+# LIBNEUROML_DYNAMIC = external/neuroML_src/libneuroml.so
+# LIBNEUROML_STATIC = external/neuroML_src/libneuroml.a
+# endif
 
 # To compile with readline support pass USE_READLINE=1 in make command line
-ifeq ($(USE_READLINE),1)
-LIBS+= -lreadline -lncurses
-CXXFLAGS+= -DUSE_READLINE 
-endif
+# ifeq ($(USE_READLINE),1)
+# LIBS+= -lreadline -lncurses
+# CXXFLAGS+= -DUSE_READLINE 
+# endif
 
 # To compile with curses support (terminal aware printing) pass USE_CURSES=1 in make command line
 ifeq ($(USE_CURSES),1)
@@ -251,21 +237,6 @@ LIBS += -lcurses
 CXXFLAGS+= -DUSE_CURSES
 endif
 
-# To compile with OpenSceneGraph support and enable 'GLcell', 'GLview' pass USE_GL=1 in make command line
-ifeq ($(USE_GL),1)
-	LIBS += -losg -losgDB -lOpenThreads -lboost_serialization
-	LDFLAGS += -L/usr/local/lib 
-	CXXFLAGS += -DUSE_GL -I. -Ibasecode	GL_DIR = gl/src
-	GLCELL_LIB = gl/src/GLcell.o
-	GLVIEW_LIB = gl/src/GLview.o gl/src/GLshape.o
-endif
-
-# For mac with USE_GL, force 32-bit architecture because OSG doesn't fully build in 64-bit yet
-ifeq ($(PLATFORM),mac)
-ifeq ($(USE_GL),1)
-CXXFLAGS += -arch i386
-endif
-endif
 
 # For 64 bit Linux systems add paths to 64 bit libraries 
 ifeq ($(OSTYPE),Linux)
@@ -279,10 +250,10 @@ LD = ld
 
 SUBDIR = basecode connections maindir genesis_parser shell element scheduling \
 	biophysics hsolve kinetics ksolve builtins utility \
-	randnum robots device $(GL_DIR) $(SBML_DIR) $(NEUROML_DIR) $(PARALLEL_DIR) $(MUSIC_DIR) 
+	randnum robots device
 
 # Used for 'make clean'
-CLEANSUBDIR = $(SUBDIR) gl/src sbml_IO neuroML_IO parallel music pymoose $(LIBNEUROML_SRC)
+CLEANSUBDIR = $(SUBDIR)  sbml_IO neuroML_IO parallel music pymoose $(LIBNEUROML_SRC)
 
 OBJLIBS =	\
 	basecode/basecode.o \
@@ -300,13 +271,8 @@ OBJLIBS =	\
 	ksolve/ksolve.o \
 	builtins/builtins.o \
 	robots/robots.o \
-	device/device.o \
-	$(GLCELL_LIB) \
-	$(GLVIEW_LIB) \
-	$(SBML_LIB) \
-	$(NEUROML_LIB) \
-	$(PARALLEL_LIB) \
-	$(MUSIC_LIB)
+	device/device.o 
+
 
 export CXX
 export CXXFLAGS

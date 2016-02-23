@@ -2132,6 +2132,11 @@ void yyFlexLexer::yyensure_buffer_stack(void)
     	return (yy_start_stack)[(yy_start_stack_ptr) - 1];
 }
 
+int yyFlexLexer::yywrap(void)
+{
+    return 1;
+}
+
 #ifndef YY_EXIT_FAILURE
 #define YY_EXIT_FAILURE 2
 #endif
