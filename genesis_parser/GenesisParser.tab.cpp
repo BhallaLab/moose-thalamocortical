@@ -81,7 +81,7 @@
 #include <setjmp.h>
 
 // #include "../basecode/Shell.h"
-#include <FlexLexer.h>
+#include "FlexLexer.h"
 #include "header.h"
 #include "script.h"
 #include "GenesisParser.h"

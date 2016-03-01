@@ -32,7 +32,7 @@
 
 // #include "Shell.h"
 
-#include <FlexLexer.h>
+#include "FlexLexer.h"
 #include "GenesisParser.tab.h"
 #include "script.h"
 #include "header.h"

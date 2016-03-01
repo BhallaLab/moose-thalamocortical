@@ -16,7 +16,7 @@
 #include <climits>
 
 #include <setjmp.h>
-#include <FlexLexer.h>
+#include "FlexLexer.h"
 
 #include "basecode/moose.h"
 #include "element/Neutral.h"

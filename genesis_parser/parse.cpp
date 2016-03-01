@@ -5,7 +5,7 @@
 #include <vector>
 #include <setjmp.h>
 using namespace std;
-#include <FlexLexer.h>
+#include "FlexLexer.h"
 #include "header.h"
 #include "script.h"
 #include "GenesisParser.h"

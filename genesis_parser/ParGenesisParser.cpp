@@ -3,7 +3,7 @@
 #include <math.h>
 #include <string>
 #include <setjmp.h>
-#include <FlexLexer.h>
+#include "FlexLexer.h"
 #include "script.h"
 
 #include "../shell/Shell.h"

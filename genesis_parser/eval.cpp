@@ -16,7 +16,7 @@ using namespace std;
 #include <math.h>
 // #include <string.h>
 #include <setjmp.h>
-#include <FlexLexer.h>
+#include "FlexLexer.h"
 #include "header.h"
 #include "script.h"
 #include "GenesisParser.h"
